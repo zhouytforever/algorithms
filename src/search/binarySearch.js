@@ -9,3 +9,5 @@ export const binarySearch = (key, arr) => {
   }
   return null
 }
+export const filterByWhiteList = (source, whiteList) =>
+  source.filter(e => binarySearch(e, whiteList) === null ? null : e)

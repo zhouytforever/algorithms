@@ -1,4 +1,4 @@
-import { binarySearch } from './binarySearch.js'
+import { filterByWhiteList } from './binarySearch.js'
 import chai from 'chai'
 const { expect } = chai
 
@@ -10,15 +10,8 @@ describe('二分查找', () => {
     23, 50, 99, 48
   ]
   it('binary search', () => {
-    const result = []
-    for (let i = 0, len = template.length; i < len; i++) {
-      const key = binarySearch(template[i], whiteList)
-      if (key !== null) {
-        result.push(key)
-      }
-    }
-    console.log('result: ', result)
-    expect(result).to.lengthOf(2)
-    expect(result[1]).to.be.equal(99)
+    const result = filterByWhiteList(template, whiteList)
+    expect(result).lengthOf(2)
+    expect(result[1]).to.be.equal(48)
   })
 })
