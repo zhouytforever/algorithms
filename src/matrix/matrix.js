@@ -1,6 +1,11 @@
-export const print = (title, arr) => {
-  console.log(title)
-  console.table(arr)
+export const print = (...args) => {
+  args.map(e => {
+    if (e instanceof Array) {
+      console.table(e)
+    } else {
+      console.log(e)
+    }
+  })
 }
 export const transpose = (m) => {
   const cols = m.length
@@ -34,8 +39,4 @@ export const multM2M = (m1, m2) => {
     return result
   }
   throw new Error('不符合矩阵乘法规则' + m1 + m2)
-}
-export const multL2M = (l, m) => {
-}
-export const multM2L = (m, l) => {
 }
