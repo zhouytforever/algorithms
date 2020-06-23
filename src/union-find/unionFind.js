@@ -1,11 +1,11 @@
 import { print } from '../utils.js'
 export class UF {
-  UF (n) {
+  constructor (n) {
     this.count = n
     this.id = [...Array(n)].map((e, i) => i)
   }
 
-  count () {
+  getCount () {
     return this.count
   }
 
@@ -13,11 +13,16 @@ export class UF {
     return this.find(p) === this.find(q)
   }
 
+  print () {
+    print(this.id, `有${this.count}组`)
+  }
+
+  ids () {
+    return this.id
+  }
+
   find (p) {}
   union (p, q) {}
-  print () {
-    print('Union-Find ' + this.coun, this.id)
-  }
 }
 
 export class QuickFind extends UF {
@@ -37,7 +42,9 @@ export class QuickFind extends UF {
 }
 export class QuickUnion extends UF {
   find (p) {
-    return this.id[p]
+    let t = p
+    while (t !== this.id[t]) t = this.id[t]
+    return t
   }
 
   union (p, q) {
@@ -45,6 +52,50 @@ export class QuickUnion extends UF {
     const qRoot = this.find(q)
     if (pRoot === qRoot) return null
     this.id[pRoot] = qRoot
+    this.count--
+  }
+}
+export class WeightedQuickUnion {
+  constructor (n) {
+    this.count = n
+    this.id = [...Array(n)].map((e, i) => i)
+    this.sz = [...this.id]
+  }
+
+  getCount () {
+    return this.count
+  }
+
+  connected (p, q) {
+    return this.find(p) === this.find(q)
+  }
+
+  print () {
+    print(this.id, `有${this.count}组`)
+  }
+
+  ids () {
+    return this.id
+  }
+
+  find (p) {
+    let t = p
+    while (t !== this.id[t]) t = this.id[t]
+    return t
+  }
+
+  union (p, q) {
+    const i = this.find(p)
+    const j = this.find(q)
+    if (i === j) return
+    // 将小树的根节点连接到大树的根节点
+    if (this.sz[i] < this.sz[j]) {
+      this.id[i] = j
+      this.sz[j] += this.sz[i]
+    } else {
+      this.id[j] = i
+      this.sz[i] += this.sz[j]
+    }
     this.count--
   }
 }

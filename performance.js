@@ -9,7 +9,7 @@ async function getTestFiles (p) {
   const fileList = []
   for await (const dirent of dir) {
     const { name } = dirent
-    if (/^.+\.test\.js$/.test(name)) {
+    if (/^.+\.pfms\.js$/.test(name)) {
       fileList.push(path.join(p, name))
     }
   }
@@ -18,7 +18,7 @@ async function getTestFiles (p) {
 const run = async () => {
   try {
     const files = await getTestFiles(path.join('src', module))
-    files.forEach(e => spawn('mocha', [e], { stdio: 'inherit' }))
+    files.forEach(e => spawn('node', [e], { stdio: 'inherit' }))
   } catch (e) {
     console.error(e)
   }
