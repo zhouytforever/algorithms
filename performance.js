@@ -18,6 +18,10 @@ async function getTestFiles (p) {
 const run = async () => {
   try {
     const files = await getTestFiles(path.join('src', module))
+    if (files.length <= 0) {
+      console.error('没有测试文件')
+      return
+    }
     files.forEach(e => spawn('node', [e], { stdio: 'inherit' }))
   } catch (e) {
     console.error(e)

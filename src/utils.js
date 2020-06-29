@@ -31,8 +31,8 @@ export const timesTest = (title, times, fns, genArgs) => {
   const len = fns.length
   const durations = [...Array(len)].map(() => 0)
   for (let i = 0; i < times; i++) {
-    console.log()
     print(`正在执行第 ${i + 1} 次测试...`)
+    console.log()
     const { flag, a } = randomStart(fns)
     const args = genArgs()
     for (let j = 0; j < len; j++) {
@@ -46,8 +46,8 @@ export const timesTest = (title, times, fns, genArgs) => {
     durations.map(e => {
       const avg = e / times
       return {
-        s: Number((avg / 1000).toFixed(2)),
-        ms: avg
+        's(avg)': Number((avg / 1000).toFixed(2)),
+        'ms(avg)': avg
       }
     })
   )
