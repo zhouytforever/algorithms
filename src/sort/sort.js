@@ -9,7 +9,7 @@ export const compareTo = (a, b) => {
   if (a < b) return -1
   return 0
 }
-export const printExchange = (a, i, j) =>
+export const exchanged = (a, i, j) =>
   console.table([a.map((e, idx) =>
     idx === j || idx === i
       ? '' + e
@@ -69,4 +69,28 @@ export const shell = arr => {
     h = Number.parseInt(h / 3)
   }
   return a
+}
+
+const merge = (left, right) => {
+  const lenL = left.length
+  const lenR = right.length
+  let i = 0
+  let j = 0
+  const a = [...left, ...right]
+  for (let k = 0, len = a.length; k < len; k++) {
+    if (i >= lenL) a[k] = right[j++]
+    else if (j >= lenR) a[k] = left[i++]
+    else if (less(right[j], left[i])) a[k] = right[j++]
+    else a[k] = left[i++]
+  }
+  return a
+}
+export const mergeSort = (arr) => {
+  const len = arr.length
+  if (len <= 1) return arr
+  const mid = Math.floor(len / 2)
+  return merge(
+    mergeSort(arr.slice(0, mid)),
+    mergeSort(arr.slice(mid))
+  )
 }

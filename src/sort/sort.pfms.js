@@ -3,12 +3,13 @@ import {
   selection,
   insertion,
   shell,
-  randomArray
+  randomArray,
+  mergeSort
 } from './sort.js'
 
-const largeN = 10000
-const times = 20
-timesTest(`Selection VS Insertion ${times} times of ${largeN} array`, times, [
+const largeN = 1000
+const times = 10
+timesTest(`Selection, Insertion, Shell, Merge ${times} times of ${largeN} array`, times, [
   ({ N, table }) => {
     selection([...table])
   },
@@ -17,6 +18,9 @@ timesTest(`Selection VS Insertion ${times} times of ${largeN} array`, times, [
   },
   ({ N, table }) => {
     shell([...table])
+  },
+  ({ N, table }) => {
+    mergeSort([...table])
   }
 ], () => {
   return {

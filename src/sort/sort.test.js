@@ -5,7 +5,8 @@ import {
   randomArray,
   selection,
   insertion,
-  shell
+  shell,
+  mergeSort
 } from './sort.js'
 import chai from 'chai'
 const { expect } = chai
@@ -13,15 +14,15 @@ const { expect } = chai
 const expectRun = (arr, fn) => {
   try {
     const result = fn(c)
-    // show(result)
+    print(result)
     expect(result).to.be.an('array').lengthOf(arr.length)
     expect(isSorted(result)).to.be.equal(true)
   } catch (e) {
-    print(e)
+    console.error(e)
   }
 }
 
-const N = 20
+const N = 8
 const c = randomArray(N)
 print([c])
 describe('正确性', () => {
@@ -33,5 +34,8 @@ describe('正确性', () => {
   })
   it('希尔排序', () => {
     expectRun(c, shell)
+  })
+  it('归并排序', () => {
+    expectRun(c, mergeSort)
   })
 })

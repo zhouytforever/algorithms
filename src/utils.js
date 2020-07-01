@@ -1,6 +1,9 @@
 export const noop = () => {}
 export const print = (...args) => args.map(e =>
-  e instanceof Array ? console.table(e) : console.log(e)
+  e instanceof Array ? console.table(e)
+    : e instanceof Object
+      ? console.table(e)
+      : console.log(e)
 )
 export const randomNumber = (max) => Math.floor(Math.random() * max)
 export const randomPairs = (num, max) =>
