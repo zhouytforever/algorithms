@@ -5,8 +5,9 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "test": "node ./test.js",
-    "pfms": "node ./performance.js"
+    "aq": "node ./add-question.js",
+    "pfms": "node ./performance.js",
+    "test": "node ./test.js"
   },
   "author": "Joyt",
   "license": "MIT",
