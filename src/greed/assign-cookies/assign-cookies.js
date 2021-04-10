@@ -5,7 +5,7 @@ export const assignCookies = (children, cookies) => {
   let child = 0
   let cookie = 0
   while (child < sc.length && cookie < sk.length) {
-    if (sc[child] < sk[cookie]) { child++ }
+    if (sc[child] <= sk[cookie]) { child++ }
     cookie++
   }
   return child

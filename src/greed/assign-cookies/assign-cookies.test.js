@@ -7,4 +7,10 @@ describe('分配饼干', () => {
     const result = assignCookies(child, cookies)
     result.should.to.equal(2)
   })
+  it('case 2', () => {
+    const child = [1, 2, 3]
+    const cookies = [1, 1]
+    const result = assignCookies(child, cookies)
+    result.should.to.equal(1)
+  })
 })
