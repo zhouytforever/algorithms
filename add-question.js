@@ -5,7 +5,7 @@ const module = process.argv[2]
 const cwd = process.env.INIT_CWD
 
 const indexTemplate =
-`export const ${module} = (module) => {
+`export const ${module} = input => {
 
 }
 `
