@@ -30,4 +30,9 @@ describe('balloons', () => {
     const result = balloons(input)
     result.should.to.equal(2)
   })
+  it('case 7', () => {
+    const input = [[0, 9], [0, 6], [7, 8]]
+    const result = balloons(input)
+    result.should.to.equal(2)
+  })
 })
