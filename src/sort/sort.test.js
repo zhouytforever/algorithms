@@ -1,13 +1,13 @@
+import { isSorted, randomArray } from './tools.js'
+
 import {
   print,
-  show,
-  isSorted,
-  randomArray,
   selection,
   insertion,
   shell,
   mergeSort
 } from './sort.js'
+
 import chai from 'chai'
 const { expect } = chai
 

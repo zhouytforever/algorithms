@@ -1,9 +1,9 @@
 import { timesTest } from '../utils.js'
+import { randomArray } from './tools.js'
 import {
   selection,
   insertion,
   shell,
-  randomArray,
   mergeSort
 } from './sort.js'
 
