@@ -8,27 +8,29 @@ import {
   quickSort
 } from './sort.js'
 
-const largeN = 1000
+const arrayLength = 10000
 const times = 10
-timesTest(`Selection, Insertion, Shell, Merge, Quick : ${times} times of ${largeN} array`, times, [
-  ({ N, table }) => {
-    selection([...table])
-  },
-  ({ N, table }) => {
-    insertion([...table])
-  },
-  ({ N, table }) => {
-    shell([...table])
-  },
-  ({ N, table }) => {
-    mergeSort([...table])
-  },
-  ({ N, table }) => {
-    quickSort([...table])
-  }
-], () => {
+timesTest(
+`Selection, Insertion, Shell, Merge, Quick : ${times} times of ${arrayLength} array`,
+times,
+[{
+  label: '选择排序',
+  fn: ({ table }) => selection([...table])
+}, {
+  label: '插入排序',
+  fn: ({ table }) => insertion([...table])
+}, {
+  label: '希尔排序',
+  fn: ({ table }) => shell([...table])
+}, {
+  label: '归并排序',
+  fn: ({ table }) => mergeSort([...table])
+}, {
+  label: '快速排序',
+  fn: ({ table }) => quickSort([...table])
+}],
+() => {
   return {
-    N: largeN,
-    table: randomArray(largeN)
+    table: randomArray(arrayLength)
   }
 })
