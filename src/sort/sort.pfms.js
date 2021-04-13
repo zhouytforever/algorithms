@@ -4,12 +4,13 @@ import {
   selection,
   insertion,
   shell,
-  mergeSort
+  mergeSort,
+  quickSort
 } from './sort.js'
 
 const largeN = 1000
 const times = 10
-timesTest(`Selection, Insertion, Shell, Merge ${times} times of ${largeN} array`, times, [
+timesTest(`Selection, Insertion, Shell, Merge, Quick : ${times} times of ${largeN} array`, times, [
   ({ N, table }) => {
     selection([...table])
   },
@@ -21,6 +22,9 @@ timesTest(`Selection, Insertion, Shell, Merge ${times} times of ${largeN} array`
   },
   ({ N, table }) => {
     mergeSort([...table])
+  },
+  ({ N, table }) => {
+    quickSort([...table])
   }
 ], () => {
   return {

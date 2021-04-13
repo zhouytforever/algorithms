@@ -1,5 +1,9 @@
-import { compare, swap } from './tools.js'
-export { print } from '../utils.js'
+import { compare, swap, less, greater } from './tools.js'
+import _ from 'lodash'
+
+/**
+ * 选择排序
+ */
 export const selection = (arr, fn) => {
   const a = [...arr]
   const len = a.length
@@ -12,6 +16,10 @@ export const selection = (arr, fn) => {
   }
   return a
 }
+
+/**
+ * 插入排序
+ */
 export const insertion = (arr, fn) => {
   const a = [...arr]
   const len = a.length
@@ -20,6 +28,10 @@ export const insertion = (arr, fn) => {
   }
   return a
 }
+
+/**
+ * 希尔排序
+ */
 export const shell = (arr, fn) => {
   const a = [...arr]
   const len = a.length
@@ -38,6 +50,9 @@ export const shell = (arr, fn) => {
   return a
 }
 
+/**
+ * 归并排序
+ */
 const merge = (left, right, fn) => {
   const lenL = left.length
   const lenR = right.length
@@ -60,4 +75,38 @@ export const mergeSort = (arr, fn) => {
     mergeSort(arr.slice(0, mid), fn),
     mergeSort(arr.slice(mid), fn)
   )
+}
+
+/**
+ * 快速排序
+ */
+const partition = (arr, left, right, lessFn, greaterFn) => {
+  const pivot = arr[Math.floor((left + right) / 2)] // 中线元素
+  let l = left // 左侧指针
+  let r = right // 右侧指针
+  while (l <= r) {
+    while (lessFn(arr[l], pivot)) { l++ }
+    while (greaterFn(arr[r], pivot)) { r-- }
+    if (l <= r) {
+      swap(arr, l, r)
+      l++
+      r--
+    }
+  }
+  return l
+}
+const quickSortEntity = (arr, left, right, lessFn, greaterFn) => {
+  if (arr.length <= 1) { return arr }
+  const index = partition(arr, left, right, lessFn, greaterFn)
+  if (left < index - 1) { // more elements on the left side of the pivot
+    quickSortEntity(arr, left, index - 1, lessFn, greaterFn)
+  }
+  if (index < right) { // more elements on the left side of the pivot
+    quickSortEntity(arr, index, right, lessFn, greaterFn)
+  }
+}
+export const quickSort = (arr, lessFn = less, greaterFn = greater) => {
+  const temp = _.cloneDeep(arr)
+  quickSortEntity(temp, 0, arr.length - 1, lessFn, greaterFn)
+  return temp
 }

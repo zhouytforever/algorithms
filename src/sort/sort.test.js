@@ -1,19 +1,19 @@
 import { isSorted, randomArray } from './tools.js'
-
+import { print } from '../utils.js'
 import {
-  print,
   selection,
   insertion,
   shell,
+  quickSort,
   mergeSort
 } from './sort.js'
 
 import chai from 'chai'
 const { expect } = chai
 
-const expectRun = (arr, fn) => {
+const expectRun = (arr, fn, ...compareFn) => {
   try {
-    const result = fn(c)
+    const result = fn(arr, ...compareFn)
     print(result)
     expect(result).to.be.an('array').lengthOf(arr.length)
     expect(isSorted(result)).to.be.equal(true)
@@ -37,5 +37,10 @@ describe('正确性', () => {
   })
   it('归并排序', () => {
     expectRun(c, mergeSort)
+  })
+  it('快速排序', () => {
+    const lessFn = (a, b) => a < b
+    const greaterFn = (a, b) => a > b
+    expectRun(c, quickSort, lessFn, greaterFn)
   })
 })

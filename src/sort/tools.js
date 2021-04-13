@@ -33,4 +33,4 @@ export const compareTo = (a, b) => {
 export const less = (v, w) => compareTo(v, w) < 0
 export const greater = (v, w) => compareTo(v, w) > 0
 export const compare = (v, w, fn) =>
-  fn ? fn(v, w) : less(v, w)
+  fn && typeof fn === 'function' ? fn(v, w) : less(v, w)
