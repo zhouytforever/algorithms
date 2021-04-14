@@ -4,22 +4,25 @@ import {
   selection,
   insertion,
   shell,
-  quickSort,
-  mergeSort
+  quick,
+  merge
 } from './sort.js'
 
 import chai from 'chai'
 const { expect } = chai
 
-const expectRun = (arr, fn, ...compareFn) => {
+const expectRun = (input, fn, compareFn) => {
+  let result
   try {
-    const result = fn(arr, ...compareFn)
-    print(result)
-    expect(result).to.be.an('array').lengthOf(arr.length)
-    expect(isSorted(result)).to.be.equal(true)
+    result = fn(input, compareFn)
+    print(fn, '>>>', result)
   } catch (e) {
+    print('input in expectRun', input)
+    print('result in expectRun', result)
     console.error(e)
   }
+  expect(result).to.be.an('array').lengthOf(input.length)
+  expect(isSorted(result), compareFn).to.be.equal(true)
 }
 
 const N = 8
@@ -36,11 +39,10 @@ describe('正确性', () => {
     expectRun(c, shell)
   })
   it('归并排序', () => {
-    expectRun(c, mergeSort)
+    expectRun(c, merge)
   })
   it('快速排序', () => {
     const lessFn = (a, b) => a < b
-    const greaterFn = (a, b) => a > b
-    expectRun(c, quickSort, lessFn, greaterFn)
+    expectRun(c, quick, lessFn)
   })
 })

@@ -4,8 +4,8 @@ import {
   selection,
   insertion,
   shell,
-  mergeSort,
-  quickSort
+  merge,
+  quick
 } from './sort.js'
 
 const arrayLength = 10000
@@ -24,10 +24,10 @@ times,
   fn: ({ table }) => shell([...table])
 }, {
   label: '归并排序',
-  fn: ({ table }) => mergeSort([...table])
+  fn: ({ table }) => merge([...table])
 }, {
   label: '快速排序',
-  fn: ({ table }) => quickSort([...table])
+  fn: ({ table }) => quick([...table])
 }],
 () => {
   return {
