@@ -3,30 +3,34 @@ import path from 'path'
 
 const module = process.argv[2]
 const cwd = process.env.INIT_CWD
+const variable = module.split('-')
+  .map((e, i) => i === 0 ? e
+    : String.fromCharCode(e.charCodeAt(0) - 32) + e.substr(1))
+  .reduce((pre, cur) => pre + cur)
 
 const indexTemplate =
-`export const ${module} = input => {
+`export const ${variable} = input => {
 
 }
 `
 const descTemplate = `# ${module}`
 
 const testTemplate =
-`import { ${module} } from './${module}.js'
+`import { ${variable} } from './${module}.js'
 describe('${module}', () => {
   it('case 1', () => {
     const input = 
-    const result = ${module}(input)
+    const result = ${variable}(input)
     result.should.to.equal()
   })
   it('case 2', () => {
     const input = 
-    const result = ${module}(input)
+    const result = ${variable}(input)
     result.should.to.equal()
   })
   it('case 3', () => {
     const input = 
-    const result = ${module}(input)
+    const result = ${variable}(input)
     result.should.to.equal()
   })
 })
