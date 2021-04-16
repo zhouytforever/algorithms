@@ -5,6 +5,7 @@ export class LinkList {
     if (data) {
       this.head = new Node(data)
     } else this.head = null
+    return this
   }
 
   append (data) {
@@ -18,6 +19,7 @@ export class LinkList {
       }
       tail.next = node
     }
+    return this
   }
 
   remove () {
@@ -47,6 +49,7 @@ export class LinkList {
       tail = new Node(cloned[pos], tail)
     }
     this.head = tail
+    return this
   }
 
   toArray () {

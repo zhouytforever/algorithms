@@ -29,7 +29,12 @@ const run = async () => {
     }
     for (const file of fileList) {
       console.log('测试文件$', file)
-      await spawnSync('mocha', [file, '-r', 'chai/register-should'], { stdio: 'inherit' })
+      await spawnSync('mocha', [
+        file,
+        '-r', 'chai/register-assert',
+        '-r', 'chai/register-should',
+        '-r', 'chai/register-expect'
+      ], { stdio: 'inherit' })
     }
   } catch (e) {
     console.error(e)

@@ -28,7 +28,7 @@ const run = async () => {
     }
     for (const file of fileList) {
       console.log('性能测试文件$', file)
-      await spawnSync('node', [file, '-r', 'chai/register-should'], { stdio: 'inherit' })
+      await spawnSync('node', [file], { stdio: 'inherit' })
     }
   } catch (e) {
     console.error(e)
