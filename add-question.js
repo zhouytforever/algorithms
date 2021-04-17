@@ -21,17 +21,17 @@ describe('${module}', () => {
   it('case 1', () => {
     const input = 
     const result = ${variable}(input)
-    result.should.to.equal()
+    expect(result).to.equal()
   })
   it('case 2', () => {
     const input = 
     const result = ${variable}(input)
-    result.should.to.equal()
+    expect(result).to.equal()
   })
   it('case 3', () => {
     const input = 
     const result = ${variable}(input)
-    result.should.to.equal()
+    expect(result).to.equal()
   })
 })
 `
