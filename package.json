@@ -6,6 +6,7 @@
   "type": "module",
   "scripts": {
     "aq": "node ./add-question.js",
+    "ad": "node add-debug.js",
     "pfms": "node ./performance.js",
     "test": "node ./test.js"
   },
