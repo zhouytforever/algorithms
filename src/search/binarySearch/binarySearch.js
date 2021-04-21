@@ -1,4 +1,3 @@
-export const noop = () => {}
 export const binarySearch = (key, arr, fn = (key, arrMid) => key < arrMid) => {
   let lo = 0; let hi = arr.length - 1
   while (lo <= hi) {
