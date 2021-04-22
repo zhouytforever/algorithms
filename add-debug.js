@@ -8,7 +8,7 @@ const cwd = process.env.INIT_CWD
 const testParser = (fileContent, subModule) => {
   const importGroup = `(import.+${subModule}\\.js')[\\s\\S]*`
   const codeGroup =
-    'case\\s1[\\s\\S]*\\{([\\s\\S]*)\\n[\\s\\S]+[expect|should]{1}[\\s\\S]+\\}\\)'
+    'case[\\s\\S]*\\{([\\s\\S]*)\\n[\\s\\S]+[expect|should]{1}[\\s\\S]+\\}\\)'
   const regStr = importGroup + codeGroup
   const reg = RegExp(regStr)
   return reg.exec(fileContent).slice(1)
