@@ -93,22 +93,22 @@ export const merge = (arr, fn = less) => {
  * 快速排序
  */
 const partition = (arr, left, right, fn) => {
-  const pivot = arr[Math.floor((left + right) / 2)] // 中线元素
-  let l = left // 左侧指针
-  let r = right // 右侧指针
-  while (l <= r) {
-    while (compare(arr[l], pivot, fn)) { l++ }
-    while (compare(pivot, arr[r], fn)) { r-- }
-    if (l <= r) {
-      swap(arr, l, r)
-      l++
-      r--
+  const pivot = arr[Math.floor(left + (right - left) / 2)] // 中线元素
+  let lo = left // 左侧指针
+  let hi = right // 右侧指针
+  while (lo <= hi) {
+    while (compare(arr[lo], pivot, fn)) { lo++ }
+    while (compare(pivot, arr[hi], fn)) { hi-- }
+    if (lo <= hi) {
+      swap(arr, lo, hi)
+      lo++
+      hi--
     }
   }
-  return l
+  return lo
 }
 const quickSortEntity = (arr, left, right, fn) => {
-  if (arr.length <= 1) { return arr }
+  if (arr.length <= 1) { return }
   const index = partition(arr, left, right, fn)
   if (left < index - 1) { // more elements on the left side of the pivot
     quickSortEntity(arr, left, index - 1, fn)
